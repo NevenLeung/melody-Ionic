@@ -1,0 +1,124 @@
+<ion-view view-title="Song Info">
+  <ion-content class="has-comment-bar" overflow-scroll="false" has-bouncing="true">
+    <div class="">
+      <div class="item item-thumbnail-left no-border feedback" ng-if="singerID.length !== 0" ui-sref="app.artist({id:singerID})">
+        <img class="song-img" ng-src="{{albumCover}}" crossorigin="">
+        <div class="row">
+          <div class="col col-center">
+            <p class="text-capitalize">
+              <i class="fa fa-music"></i>&nbsp;&nbsp;
+              <span>{{musicName}}</span>
+              <!--<span ng-if="musicName.length <= 24">{{musicName}}</span>-->
+              <!--<marquee class="vertical-adjust" ng-if="musicName.length > 24" scrollamount="5">-->
+              <!--{{musicName}}-->
+              <!--</marquee>-->
+            </p>
+            <p class="text-capitalize">
+              <i class="fa fa-user-o"></i>&nbsp;&nbsp;
+              <span>{{singerName}}</span>
+            </p>
+            <p class="text-capitalize">
+              <i class="fa fa-folder-o"></i>&nbsp;&nbsp;
+              <span ng-if="albumName.length <= 24">{{albumName}}</span>
+              <marquee class="vertical-adjust" ng-if="albumName.length > 24" scrollamount="3">
+                {{albumName}}
+              </marquee>
+            </p>
+          </div>
+          <div class="col col-5 col-center relative-right">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="item item-thumbnail-left no-border" ng-if="singerID.length == 0">
+        <img class="song-img" ng-src="{{albumCover}}" crossorigin="">
+        <div class="row">
+          <div class="col col-center">
+            <p class="text-capitalize">
+              <i class="fa fa-music"></i>&nbsp;&nbsp;
+              <span>{{musicName}}</span>
+              <!--<span ng-if="musicName.length <= 24">{{musicName}}</span>-->
+              <!--<marquee class="vertical-adjust" ng-if="musicName.length > 24" scrollamount="5">-->
+                <!--{{musicName}}-->
+              <!--</marquee>-->
+            </p>
+            <p class="text-capitalize">
+              <i class="fa fa-user-o"></i>&nbsp;&nbsp;
+              <span>{{singerName}}</span>
+            </p>
+            <p class="text-capitalize">
+              <i class="fa fa-folder-o"></i>&nbsp;&nbsp;
+              <span ng-if="albumName.length <= 24">{{albumName}}</span>
+              <marquee class="vertical-adjust" ng-if="albumName.length > 24" scrollamount="3">
+                {{albumName}}
+              </marquee>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="item comment-title no-border">
+        <div class="h3 title">Comments</div>
+      </div>
+      <div class="comment-item no-border" ng-repeat="obj in comments | limitTo:numberOfItemsToDisplay ">
+        <div class="item comment-avatar-wrap no-border" style="border-bottom: none;">
+          <img class="comment-avatar" ng-src='{{obj.postedBy.avatar}}' ui-sref="app.user({id: obj.postedBy._id})">
+          <div class="comment-info">
+            <span class="comment-text">{{obj.postedBy.username}}</span>
+            <span class="comment-text absolute-right">{{obj.updatedAt | date:'MMM, dd, yyyy'}}</span>
+          </div>
+        </div>
+        <div class="item item-text-wrap no-border" style="border-top: none; padding: 0 8px;">
+
+            <p>{{obj.comment}}</p>
+
+        </div>
+
+        <hr ng-if="!$last">
+      </div>
+      <!--<div class="gradient-wrap" style="padding: 40px;">-->
+        <!--<img src="img/up.jpg" alt="" height="200px" crossorigin="">-->
+      <!--</div>-->
+      <!--<div class="gradient-wrap p4 mb2 ml1 inline-block">-->
+        <!--<img ng-src="{{baseUrl}}/images/album/001.jpg" style="max-height: 200px" alt="" crossorigin="">-->
+      <!--</div>-->
+    </div>
+    <!--<div class="list card">-->
+
+      <!--<div ng-repeat="obj in comments">-->
+        <!--<div class="item item-avatar" style="border-bottom: none;">-->
+          <!--<img class="comment-avatar" ng-src='{{obj.postedBy.avatar}}' ui-sref="app.user({id: obj.postedBy._id})">-->
+          <!--<div class="comment-info">-->
+            <!--<span class="comment-text">{{obj.postedBy.username}}</span>-->
+            <!--<span class="comment-text absolute-right">{{obj.updatedAt | date:'MMM, dd, yyyy'}}</span>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item item-text-wrap" style="border-top: none; padding: 0 8px;">-->
+
+            <!--<p>{{obj.comment}}</p>-->
+
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
+
+    <ion-infinite-scroll
+      on-infinite="loadMore()"
+      distance="1%"
+      ng-if="!noMoreItem">
+    </ion-infinite-scroll>
+
+  </ion-content>
+  <ion-footer-bar class="comment-bar">
+    <div class="bar item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="make a comment" ng-model="commentContent">
+      </label>
+      <button class="button button-clear button-stable button-small comment-text" ng-click="checkComment()">
+        Submit
+      </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

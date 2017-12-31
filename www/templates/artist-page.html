@@ -1,0 +1,24 @@
+<ion-view view-title="Artist">
+  <ion-content class="has-footer" overflow-scroll="false" has-bouncing="true">
+    <div class="list">
+      <div class="item text-center no-border">
+        {{artistName}}
+      </div>
+      <div class="item item-image no-border">
+        <img ng-src="{{artistPhoto}}">
+      </div>
+      <div class="item no-border">
+        <div class="h3 title">
+          Introduction
+        </div>
+        <pre class="artist-text">{{introduction}}</pre>
+      </div>
+      <div class="item no-border">
+        <div class="h3 title">
+          Recommended Song
+        </div>
+        <pre class="artist-text">{{recommended}}</pre>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

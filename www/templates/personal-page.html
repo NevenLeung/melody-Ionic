@@ -1,0 +1,57 @@
+<ion-view view-title="Personal Center">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon fa fa-edit modify-icon" ng-click="openModificationModal()">
+      <!--<i class="icon modify-icon fa fa-edit"></i>-->
+    </button>
+    <!--</div>-->
+  </ion-nav-buttons>
+  <ion-content class="has-footer" overflow-scroll="false" has-bouncing="false">
+    <!--<span class="fa fa-edit"></span>-->
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <!--<div class="col-offset-20"></div>-->
+      <div class="col-60 col-offset-20">
+        <img ng-src="{{userPhoto}}" style="width: 100%">
+      </div>
+    </div>
+    <div class="list">
+      <div class="item no-border">
+        <p class="text-center">{{userInfo.username}}</p>
+        <p class="text-center">{{userInfo.introduction}}</p>
+      </div>
+      <div class="item no-border"></div>
+      <div class="item no-border">
+        <div class="title h3">
+          My favorite
+          <a class="absolute-right salmon" ng-click="playAll()">
+            <span class="fa fa-play"></span>
+          </a>
+        </div>
+      </div>
+      <div class="item user-favlist-item" ng-repeat="song in favList">
+        <div class="inline-block" style="width: 20px;">
+          <span>{{$index + 1}}</span>
+          <!--<span ng-if="playing.id == song.id && isPlay" class="wave">&nbsp;&nbsp;&nbsp;</span>-->
+        </div>
+        <div class="inline-block text-overflow text-capitalize feedback" music-player="play" add-song="song" ng-click="song.favorite = true" style="width: 75%; vertical-align: middle;">
+          {{song.title}} - <small>{{song.artist}}</small>
+        </div>
+        <div class="inline-block absolute-right">
+          <!--<button class="button button-icon icon ion-ios-heart-outline playlist-icon" style="vertical-align: baseline"></button>-->
+          <!--<button class="button button-icon icon ion-ios-close-empty"></button>-->
+
+          <!--<a class="player-button feedback-strong salmon fav-icon-vertical" ng-click="">-->
+          <!--<i class="icon playlist-icon fav-icon" ng-class="{'ion-ios-heart': song.favorite, 'ion-ios-heart-outline': !song.favorite}"></i>-->
+          <!--</a>-->
+          <a class="player-button feedback-strong salmon" ng-click="removeOneFromFav(song)">
+            <i class="icon playlist-icon ion-ios-close-empty"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

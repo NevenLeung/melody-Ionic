@@ -1,0 +1,38 @@
+<ion-modal-view ng-controller="RegisterCtrl">
+  <ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <div class="h1 title">Registration</div>
+  </ion-header-bar>
+  <ion-content overflow-scroll="false">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" placeholder="username" ng-model="registration.username">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" placeholder="password" ng-model="registration.password">
+      </label>
+      <ion-checkbox class="">
+        <span class="">Remember me</span>
+      </ion-checkbox>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Introduction</span>
+        <input type="text" placeholder="Let's Rock & Roll!" ng-model="registration.introduction">
+      </label>
+      <div class="item" ng-click="selectAvatar()">
+        <span>Select your avatar</span>
+        <img ng-src="{{baseUrl}}images/avatar/{{registration.avatar}}" ng-if="registration.avatar" height="30px" style="position: absolute; top: 20% ;right: 5%;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-40" style="margin: 0 5%;">
+        <button class="button button-block button-balanced" ng-click="doRegistration()">Register</button>
+      </div>
+      <div class="col-40" style="margin: 0 5%;">
+        <button class="button button-block button-assertive" ng-click="modal.hide()">close</button>
+      </div>
+    </div>
+  </ion-content>
+  <!--<button class="button button-block button-balanced" ng-click="doRegistration()">Register</button>-->
+  <!--<button class="button button-block button-assertive" ng-click="modal.hide()">close</button>-->
+</ion-modal-view>

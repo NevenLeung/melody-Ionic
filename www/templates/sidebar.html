@@ -1,0 +1,141 @@
+<!--<ion-side-menus> for a page with a sidebar-->
+<ion-side-menus enable-menu-with-back-views="false">
+  <!--main content for the page-->
+  <ion-side-menu-content drag-content="false">
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="mainContent"></ion-nav-view>
+    <!--<ion-nav-view name="tab-dash"></ion-nav-view>-->
+    <!--<ion-nav-view name="tab-chats"></ion-nav-view>-->
+    <ion-footer-bar class="player" on-swipe-left="left()" on-swipe-right="right()">
+      <sound-manager></sound-manager>
+
+      <div class="albumCoverThumb">
+
+        <img ng-src="{{currentPlaying.albumCover}}" height="35px">
+      </div>
+
+      <!--<button class="button">-->
+        <!--<img ng-src="{{currentPlaying.albumCover}}" alt="album cover" height="35px">-->
+      <!--</button>-->
+      <!--&nbsp;&nbsp;-->
+
+      <p class="title player-text text-capitalize" on-tap="openPlaylistModal()">
+      <!--<p class="title player-text" on-swipe-left="angularPlayer.prevTrack()" on-swipe-right="angularPlayer.nextTrack()">-->
+      <!--<a prev-track on-swipe-left></a>-->
+        <span  ng-if="currentPlaying.title.length < 24">
+          {{ currentPlaying.title }}
+        </span>
+
+        <marquee ng-if="currentPlaying.title.length > 24" scrollamount="3">
+          {{ currentPlaying.title }}
+        </marquee>
+        <!--by {{ currentPlaying.artist }}-->
+        <!--({{ currentPostion }} / {{ currentDuration }})-->
+        <!--<a next-track on-swipe-right></a>-->
+      </p>
+
+      <!--<div class="seekBase" seek-track>-->
+        <!--<div class="seekLoad" ng-style="{width : ( progress + '%' ) }"></div>-->
+      <!--</div>-->
+
+      <!--<br />-->
+      <!--<button play-music>Play</button>-->
+      <!-- - -->
+      <!--<button pause-music>Pause</button>-->
+
+      <!--<button stop-music>Stop</button>-->
+      <!--<button repeat-music>Repeat ({{ repeat }})</button>-->
+      <!--<button play-pause-toggle data-play="Play!" data-pause="Pause!">Play Toggle</button>-->
+      <div class="absolute-right">
+          <a class="player-button feedback" play-pause-toggle data-play={{playIcon}} data-pause={{pauseIcon}} ng-click="playPauseToggle()">
+            <i class="icon icon-big ion-play salmon"></i>
+          </a>
+          <a class="player-button" ng-class="{'spin': spinner}" ng-click="spinIcon()">
+            <i class="icon icon-big ion-load-a salmon"></i>
+          </a>
+          <!--<a class="player-button feedback">-->
+            <!--<i class="icon icon-big ion-music-note salmon" ng-click="openModal()"></i>-->
+          <!--</a>-->
+      </div>
+
+
+      <!--{{ isPlaying }}-->
+
+      <!--<button prev-track>Prev Track</button>-->
+      <!-- - -->
+      <!--<button next-track>Next Track</button>-->
+    </ion-footer-bar>
+  </ion-side-menu-content>
+
+  <!--the menu in the page-->
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Navigation</h1>
+    </ion-header-bar>
+    <ion-content overflow-scroll="false">
+      <ion-list>
+        <ion-item class="item item-avatar menu-info-bar" ng-if="!isLoggedIn">
+          <img class="menu-avatar" ng-src="{{baseUrl}}images/logo.png">
+          <h2 class="menu-username">Melody</h2>
+          <button class="button button-small button-light button-clear with-border absolute-right" style="right: 10px;" ng-click="openLoginModal()" menu-close>Login</button>
+        </ion-item>
+        <ion-item class="item item-avatar menu-info-bar" ng-if="isLoggedIn">
+          <img class="menu-avatar" ng-src="{{avatar}}">
+          <h2 class="menu-username">{{username}}</h2>
+          <button class="button button-small button-light button-clear with-border absolute-right" style="right: 10px;" ng-click="doLogout()">Logout</button>
+        </ion-item>
+        <ion-item menu-close ui-sref="app.home">
+          Home
+        </ion-item>
+        <!--<ion-item menu-close ui-sref="app.song({id: currentPlaying.id})">-->
+          <!--Song info-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close ui-sref="app.artist({id: currentPlaying.artistID})">-->
+          <!--Artist-->
+        <!--</ion-item>-->
+        <ion-item menu-close ui-sref="app.personal">
+          Personal Center
+        </ion-item>
+        <ion-item menu-close ui-sref="app.about">
+          About
+        </ion-item>
+        <!--<ion-item menu-close href="#!/app/home">-->
+          <!--Home-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#!/app/personal">-->
+          <!--Personal-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#!/app/about">-->
+          <!--About-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/contactus">-->
+          <!--Contact Us-->
+        <!--</ion-item>-->
+        <!--<ion-item class="item-divider">-->
+          <!--Services-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close ng-click="login()" ng-if="!loggedIn">-->
+          <!--Login-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close ng-click="logOut()" ng-if="loggedIn">-->
+          <!--Logout-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close ng-click="register()">-->
+          <!--Register-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close ng-click="reserve()">-->
+          <!--Reserve Table-->
+        <!--</ion-item>-->
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>

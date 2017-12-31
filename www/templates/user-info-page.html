@@ -1,0 +1,56 @@
+<ion-view view-title="User Info">
+  <ion-content class="has-footer" overflow-scroll="false" has-bouncing="false">
+    <div class="list">
+      <div class="item item-thumbnail-left no-border">
+        <img ng-src='{{userPhoto}}' alt="artist photo" width="150px" crossorigin="">
+        <div class="row">
+          <div class="col-90 col-center">
+            <p class="user-info-text">{{userName}}</p>
+            <p class="user-info-text">{{introduction}}</p>
+          </div>
+          <div class="col">
+            <br>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="item no-border"></div>
+      <div class="item no-border">
+        <div class="title h3">
+          His/Her favorite
+          <a class="absolute-right salmon" ng-click="playAll()">
+            <span class="fa fa-play"></span>
+          </a>
+        </div>
+        <!--<h3>-->
+          <!--His/Her favorite-->
+          <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
+          <!--<a class="absolute-right color-salmon" ng-click="playAll()">-->
+            <!--<span class="fa fa-play"></span>-->
+          <!--</a>-->
+        <!--</h3>-->
+      </div>
+      <div class="item user-favlist-item" ng-repeat="song in favList">
+        <div class="inline-block" style="width: 20px;">
+          <span>{{$index + 1}}</span>
+          <!--<span ng-if="playing.id == song.id && isPlay" class="wave">&nbsp;&nbsp;&nbsp;</span>-->
+        </div>
+        <div class="inline-block text-overflow text-capitalize feedback" play-from-playlist="song" style="width: 75%; vertical-align: middle;">
+          {{song.title}} - <small>{{song.artist}}</small>
+        </div>
+        <div class="inline-block absolute-right">
+          <!--<button class="button button-icon icon ion-ios-heart-outline playlist-icon" style="vertical-align: baseline"></button>-->
+          <!--<button class="button button-icon icon ion-ios-close-empty"></button>-->
+
+          <!--<a class="player-button feedback-strong salmon" ng-click="">-->
+            <!--<i class="icon playlist-icon ion-ios-heart-outline"></i>-->
+          <!--</a>-->
+          <!--<a class="player-button feedback-strong">-->
+            <!--<i class="icon playlist-icon ion-ios-close-empty"></i>-->
+          <!--</a>-->
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

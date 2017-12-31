@@ -1,7 +1,37 @@
 {
-  "name": "HelloIonic",
-  "private": "true",
+  "name": "melody-ionic",
   "devDependencies": {
-    "ionic": "ionic-team/ionic-bower#1.3.4"
+    "ionic": "driftyco/ionic-bower#^1.3.5"
+  },
+  "homepage": "https://github.com/NevenLeung/melody-ionic",
+  "authors": [
+    "Neven Leung <nevyn.leong@gmail.com>"
+  ],
+  "description": "A hybrid app for Melody built with Ionic",
+  "main": "",
+  "keywords": [
+    "music",
+    "Ionic"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-soundmanager2": "^0.5.6",
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-sanitize": "^1.6.6",
+    "angular-ui-router": "^1.0.10",
+    "angular-resource": "^1.6.6",
+    "Ionicons": "ionicons#^2.0.1",
+    "angular-material": "^1.1.5",
+    "font-awesome": "^4.7.0",
+    "grade": "*"
   }
 }

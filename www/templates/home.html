@@ -1,0 +1,136 @@
+<ion-view view-title="Home">
+  <ion-content class="has-footer" overflow-scroll="false" has-bouncing="false">
+    <!--<div class="range">-->
+      <!--<i class="icon ion-ios-volume-low"></i>-->
+      <!--<input type="range" name="volume" ng-model="volume" ng-click="volumeSlider(volume)">-->
+      <!--<i class="icon ion-ios-volume-high"></i>-->
+    <!--</div>-->
+    <div class="">
+      <div class="item range no-border" ng-if="showVolumeSlider" style="height: 59px;">
+        <i class="icon ion-ios-volume-low"></i>
+        <input type="range" name="volume" ng-model="volume" ng-click="volumeSlider(volume)">
+        <i class="icon ion-ios-volume-high"></i>
+      </div>
+
+      <div class="item no-border" ng-if="!showVolumeSlider" style="height: 59px;">
+        <marquee ng-if="(currentPlaying.title+currentPlaying.artist).length > 40" scrollamount="5" scrolldelay>
+          <p class="text-center" ng-class="{'invisible': !displayInfo}" style="margin: 3px 0; overflow: visible;">
+            <span class="text-capitalize">{{currentPlaying.title}}</span>
+            <span> - </span>
+            <span class="text-capitalize">{{currentPlaying.artist}}</span>
+          </p>
+        </marquee>
+        <p class="text-center" ng-if="(currentPlaying.title+currentPlaying.artist).length <= 40" ng-class="{'invisible': !displayInfo}" style="margin: 3px 0; overflow: visible;">
+          <span class="text-capitalize">{{currentPlaying.title}}</span>
+          <span> - </span>
+          <span class="text-capitalize">{{currentPlaying.artist}}</span>
+        </p>
+      </div>
+
+      <div class="item item-image no-border" style="height: 40%; margin-top: -5px;" on-swipe-left="left()" on-swipe-right="right()">
+        <img class="home-image song-img" ng-src="{{currentPlaying.albumCover}}">
+      </div>
+
+      <!-- the progress bar -->
+      <div class="row" ng-class="{'fade-out': !showTips}">
+        <div class="col col-center">
+          <i class="icon ion-arrow-left-c fade-out-item salmon"></i>
+        </div>
+        <div class="col col-80 text-center">
+          <div>Swiping on the album Cover or</div>
+          <div>player at the bottom can switch song</div>
+        </div>
+        <div class="col col-center">
+          <i class="icon ion-arrow-right-c fade-out-item salmon"></i>
+        </div>
+      </div>
+      <div class='button-bar'>
+        <div class="col"></div>
+        <button class="button button-icon icon ion-volume-medium salmon" ng-click="volumeSliderToggle()"></button>
+        <button class="button button-icon icon ion-ios-loop-strong salmon" ng-class="{'loopOff': !repeat}" repeat-music></button>
+        <button class="button button-icon icon salmon" ng-class="{'ion-ios-heart': currentPlaying.favorite, 'ion-ios-heart-outline': !currentPlaying.favorite}" ng-click="toggleFavorite(currentPlaying)"></button>
+        <button class="button button-icon icon ion-chatbox-working salmon" ui-sref="app.song({id: currentPlaying.id})"></button>
+        <div class="col"></div>
+      </div>
+      <div class="song-progress" ng-class="{'invisible': !displayInfo}">
+        <div class="row text-center">
+          <div class="col">{{ currentPostion }}</div>
+          <div class="col col-67">
+            <div class="seekBase" seek-track>
+              <div class="seekLoad-bg"></div>
+              <div class="seekLoad" ng-style="{width : ( progress + '%' ) }"></div>
+            </div>
+          </div>
+          <div class="col">{{ currentDuration }}</div>
+        </div>
+      </div>
+      <!--<div class="item no-border bar button-bar">-->
+        <!--<a class="icon ion-volume-medium" ng-click="volumeSliderToggle()"></a>-->
+      <!--</div>-->
+    </div>
+    <!--<div>-->
+      <!--<h5>Songs</h5>-->
+      <!--<ul>-->
+        <!--<li ng-repeat="song in songs">-->
+          <!--<button music-player="play" add-song="song">{{ song.title }}</button>-->
+          <!--<button music-player add-song="song">+</button>-->
+        <!--</li>-->
+      <!--</ul>-->
+
+      <!--<button play-all="songs">Play all</button>-->
+      <!--<button play-all="songs" data-play="false">Add all</button>-->
+
+
+      <!-- origin playlist -->
+      <!--<div>-->
+        <!--<h5>Playlist</h5>-->
+        <!--<button clear-playlist>Clear Playlist</button>-->
+        <!--<ul>-->
+          <!--<li ng-repeat="song in playlist">-->
+            <!--<a play-from-playlist="song">{{ song.title }}</a>-->
+            <!-- - -->
+            <!--<a remove-from-playlist="song" data-index="{{$index}}">-->
+              <!--<small>(remove)</small>-->
+            <!--</a>-->
+            <!--<span ng-if="currentPlaying.id == song.id"> - (current)</span>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+  </ion-content>
+  <!--<ion-footer-bar class="bar-assertive">-->
+    <!--<sound-manager></sound-manager>-->
+
+    <!--<p>-->
+      <!--Currently Playing: {{ currentPlaying.title }} by {{ currentPlaying.artist }} ({{ currentPostion }} / {{ currentDuration }})-->
+    <!--</p>-->
+
+    <!--<div class="seekBase" seek-track>-->
+      <!--<div class="seekLoad" ng-style="{width : ( progress + '%' ) }"></div>-->
+    <!--</div>-->
+    <!--<br />-->
+    <!--<button play-music>Play</button>-->
+    <!-- - -->
+    <!--<button pause-music>Pause</button>-->
+    <!-- - -->
+    <!--<button stop-music>Stop</button>-->
+    <!-- - -->
+    <!--<button repeat-music>Repeat ({{ repeat }})</button>-->
+    <!-- - -->
+    <!--<button play-pause-toggle data-play="Play!" data-pause="Pause!">Play Toggle</button>-->
+
+    <!--Is Playing: {{ isPlaying }}-->
+    <!--<br/>-->
+    <!--<br/>Volume: {{ volume }} - -->
+    <!--<button music-volume data-type="increase">+</button>-->
+    <!-- - -->
+    <!--<button music-volume data-type="decrease">-</button>-->
+    <!-- - -->
+    <!--<button mute-music>Mute ({{ mute }})</button>-->
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--<button prev-track>Prev Track</button>-->
+    <!-- - -->
+    <!--<button next-track>Next Track</button>-->
+  <!--</ion-footer-bar>-->
+</ion-view>

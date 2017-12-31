@@ -1,0 +1,27 @@
+<ion-modal-view ng-controller="ModifyCtrl">
+  <ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <div class="h1 title">Info Modification</div>
+  </ion-header-bar>
+  <ion-content overflow-scroll="false">
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="userInfo.username">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Introduction</span>
+        <input type="text" ng-model="userInfo.introduction">
+      </label>
+    </div>
+    <div class="row">
+      <div class="col-40" style="margin: 0 5%;">
+        <button class="button button-block button-balanced" ng-click="saveUserInfo()">Submit</button>
+      </div>
+      <div class="col-40" style="margin: 0 5%;">
+        <button class="button button-block button-assertive" ng-click="modal.hide()">close</button>
+      </div>
+    </div>
+  </ion-content>
+  <!--<button class="button button-block button-balanced" ng-click="doRegistration()">Register</button>-->
+  <!--<button class="button button-block button-assertive" ng-click="modal.hide()">close</button>-->
+</ion-modal-view>

@@ -1,0 +1,39 @@
+<div class>
+  <ion-modal-view class="bottom-sheet" ng-controller="PlaylistCtrl">
+    <ion-header-bar class="bar bar-header playlist-header" align-title="center">
+      <div class="h1 title">Playlist</div>
+      <button class="button button-icon icon ion-ios-trash-outline playlist-icon" clear-playlist ng-click="playlist = []">
+        <!--<i class="icon ion-ios-trash-outline"></i>-->
+      </button>
+      <!--<button class="button button-icon icon ion-drag" ng-click="showSongOption = !showSongOption; data.showReorder = !data.showReorder"></button>-->
+    </ion-header-bar>
+    <ion-content class="playlist scroll-content" overflow-scroll="false">
+      <ion-list>
+        <ion-item class="playlist-item" ng-repeat="song in playlist">
+          <div class="inline-block" style="width: 20px;vertical-align: middle;">
+            <span ng-if="!isPlay || !(playing.id == song.id)">{{$index + 1}}&nbsp;</span>
+            <span ng-if="playing.id == song.id && isPlay" class="wave">&nbsp;&nbsp;&nbsp;</span>
+          </div>
+          &nbsp;
+          <div class="inline-block text-overflow text-capitalize feedback playlist-item-info" play-from-playlist="song">
+            {{song.title}} - <small>{{song.artist}}</small>
+          </div>
+          <div class="inline-block absolute-right">
+            <!--<button class="button button-icon icon ion-ios-heart-outline playlist-icon" style="vertical-align: baseline"></button>-->
+            <!--<button class="button button-icon icon ion-ios-close-empty"></button>-->
+
+            <a class="player-button feedback-strong fav-icon-vertical" ng-click="toggleFavorite(song)">
+              <i class="icon playlist-icon fav-icon" ng-class="{'ion-ios-heart': song.favorite, 'ion-ios-heart-outline': !song.favorite}"></i>
+            </a>
+            <a class="player-button feedback-strong" remove-from-playlist="song" data-index="{{$index}}">
+              <i class="icon playlist-icon ion-ios-close-empty"></i>
+            </a>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="playlist-footer feedback" align-title="center" ng-click="modal.hide()">
+      <h1 class="title">Close</h1>
+    </ion-footer-bar>
+  </ion-modal-view>
+</div>
