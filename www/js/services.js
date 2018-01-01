@@ -2,9 +2,8 @@
 
 angular.module('melody.services', [])
 
-// .constant('baseUrl', 'http://localhost:3000/')
-//   .constant('baseUrl', 'http://192.168.1.101:3000/')
-    .constant('baseUrl', 'https://neven.cc:3443/')
+.constant('baseUrl', 'http://localhost:3000/')
+
   .factory('songFactory', ['$resource', 'baseUrl', function ($resource, baseUrl) {
 
     return {
