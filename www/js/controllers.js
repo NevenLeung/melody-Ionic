@@ -195,12 +195,12 @@ angular.module('melody.controllers', [])
     //   }, 2000);
     // };
 
-    $scope.right = function () {
+    $scope.swipeRight = function () {
       // console.log('left');
       angularPlayer.prevTrack()
     };
 
-    $scope.left = function () {
+    $scope.swipeLeft = function () {
       // console.log('right');
       angularPlayer.nextTrack()
     };
