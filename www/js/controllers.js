@@ -195,12 +195,12 @@ angular.module('melody.controllers', [])
     //   }, 2000);
     // };
 
-    $scope.left = function () {
+    $scope.right = function () {
       // console.log('left');
       angularPlayer.prevTrack()
     };
 
-    $scope.right = function () {
+    $scope.left = function () {
       // console.log('right');
       angularPlayer.nextTrack()
     };
