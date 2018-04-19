@@ -1,5 +1,5 @@
 # melody-ionic
-A hyrid app for melody built with Ionic
+A hyrid app for melody built with Ionic [Download](https://github.com/NevenLeung/melody-ionic/releases)
 
 ## Screen shot
 
